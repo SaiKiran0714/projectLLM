@@ -1,51 +1,51 @@
-test_id,req_id,component,measured_value,unit,condition,comment,free_text
-T001,R001,door_frame,5.2,kN,-20°C,within tolerance,"Door frame weld shear measured 5.2 kN at -20°C; borderline to requirement."
-T002,R002,panel,1.9,mm,ambient,,"Panel gap measurement averages 1.9 mm at ambient."
-T003,R003,b_pillar,820,N,ambient,,"B-pillar rigidity test achieved 820 N at room temperature."
-T004,R004,roof,11.2,kN,85°C,failed,"Roof panel weld shear measured only 11.2 kN at 85°C; below 12.0 kN requirement."
-T005,R005,hood,1.8,mm,ambient,passed,"Hood panel gap measurement shows 1.8 mm at ambient; within 1.5 mm tolerance."
-T006,R006,door,1350,N,-40°C,passed,"Door frame rigidity test achieved 1350 N at -40°C; exceeds minimum requirement."
-T007,R007,panel,8.2,kN,ambient,failed,"Side panel shear strength measured 8.2 kN at ambient; below required 8.5 kN threshold."
-T008,R008,b_pillar,0.9,mm,ambient,failed,"B-pillar gap measured 0.9 mm at ambient; exceeds maximum allowed 0.8 mm."
-T009,R009,door_frame,2480,N,ambient,failed,"Door frame rigidity measured 2480 N at ambient; does not match required 2500 N exactly."
-T010,R010,roof,2.8,mm,-10°C,passed,"Roof gap measurement shows 2.8 mm at -10°C; within 3.0 mm specification."
-T011,R011,hood,7.1,kN,ambient,passed,"Hood latch shear strength test achieved 7.1 kN at ambient; exceeds 6.8 kN minimum."
-T012,R012,panel,920,N,60°C,failed,"Panel rigidity measured 920 N at 60°C; below required threshold of 950 N."
-T013,R001,door_frame,5.8,kN,-20°C,passed,"Second door frame test measured 5.8 kN at -20°C; exceeds requirement."
-T014,R003,b_pillar,780,N,ambient,failed,"B-pillar rigidity retest measured 780 N at ambient; below 800 N requirement."
-T015,R007,panel,9.1,kN,ambient,passed,"Side panel shear strength retest achieved 9.1 kN; exceeds 8.5 kN requirement."
-T016,R013,bumper,16.1,kN,ambient,passed,"Front bumper shear test achieved 16.1 kN at ambient; exceeds 15.2 kN requirement."
-T017,R014,trunk,2.1,mm,ambient,failed,"Trunk lid gap measured 2.1 mm at ambient; exceeds 1.8 mm tolerance."
-T018,R015,fender,1050,N,-30°C,failed,"Fender rigidity measured 1050 N at -30°C; below 1100 N requirement."
-T019,R016,windshield,10.2,kN,ambient,passed,"Windshield bonding achieved 10.2 kN at ambient; exceeds 9.5 kN requirement."
-T020,R017,quarter_panel,2.7,mm,ambient,failed,"Quarter panel gap measured 2.7 mm; exceeds 2.5 mm maximum."
-T021,R018,spoiler,445,N,ambient,failed,"Spoiler rigidity measured 445 N at ambient; below required 450 N exactly."
-T022,R019,mirror,3.5,kN,-15°C,passed,"Mirror mounting achieved 3.5 kN at -15°C; exceeds 3.2 kN minimum."
-T023,R020,grille,0.8,mm,ambient,passed,"Grille gap measured 0.8 mm at ambient; within 0.9 mm tolerance."
-T024,R021,tailgate,1950,N,70°C,passed,"Tailgate rigidity achieved 1950 N at 70°C; exceeds 1800 N requirement."
-T025,R022,headlight,4.3,kN,ambient,failed,"Headlight housing achieved 4.3 kN at ambient; below 4.7 kN minimum."
-T026,R023,bumper,1.3,mm,ambient,failed,"Rear bumper gap measured 1.3 mm; exceeds 1.2 mm maximum."
-T027,R024,antenna,295,N,-25°C,passed,"Antenna mount achieved 295 N at -25°C; exceeds 280 N requirement."
-T028,R025,wheel_well,12.5,kN,ambient,passed,"Wheel well liner achieved 12.5 kN at ambient; exceeds 11.8 kN requirement."
-T029,R026,fuel_door,1.0,mm,ambient,passed,"Fuel door gap measured 1.0 mm at ambient; within 1.1 mm tolerance."
-T030,R027,license_plate,510,N,ambient,failed,"License plate mount measured 510 N at ambient; below required 520 N exactly."
-T031,R028,exhaust,9.4,kN,120°C,passed,"Exhaust mounting achieved 9.4 kN at 120°C; exceeds 8.9 kN requirement."
-T032,R029,side_skirt,2.9,mm,ambient,failed,"Side skirt gap measured 2.9 mm; exceeds 2.8 mm maximum."
-T033,R030,sunroof,2350,N,-20°C,passed,"Sunroof frame achieved 2350 N at -20°C; exceeds 2200 N requirement."
-T034,R031,dashboard,6.8,kN,ambient,failed,"Dashboard mounting achieved 6.8 kN at ambient; below 7.3 kN minimum."
-T035,R032,console,0.6,mm,ambient,passed,"Console gap measured 0.6 mm at ambient; within 0.7 mm tolerance."
-T036,R033,seat,3650,N,ambient,passed,"Seat frame achieved 3650 N at ambient; exceeds 3500 N requirement."
-T037,R034,airbag,5.2,kN,-10°C,failed,"Airbag housing achieved 5.2 kN at -10°C; below 5.8 kN requirement."
-T038,R035,steering,0.6,mm,ambient,failed,"Steering gap measured 0.6 mm; exceeds 0.5 mm maximum."
-T039,R036,pedal,1645,N,ambient,failed,"Pedal rigidity measured 1645 N at ambient; below required 1650 N exactly."
-T040,R037,armrest,3.1,kN,ambient,passed,"Armrest mounting achieved 3.1 kN at ambient; exceeds 2.9 kN requirement."
-T041,R038,cupholder,0.7,mm,ambient,passed,"Cup holder gap measured 0.7 mm at ambient; within 0.8 mm tolerance."
-T042,R039,visor,425,N,ambient,passed,"Visor rigidity achieved 425 N at ambient; exceeds 380 N requirement."
-T043,R040,handle,3.8,kN,-5°C,failed,"Handle shear achieved 3.8 kN at -5°C; below 4.1 kN minimum."
-T044,R041,vent,1.6,mm,ambient,failed,"Vent gap measured 1.6 mm; exceeds 1.5 mm maximum."
-T045,R042,trim,720,N,ambient,passed,"Trim rigidity achieved 720 N at ambient; exceeds 680 N requirement."
-T046,R013,bumper,14.8,kN,ambient,failed,"Second bumper test achieved 14.8 kN; below 15.2 kN requirement."
-T047,R015,fender,1180,N,-30°C,passed,"Fender retest achieved 1180 N at -30°C; exceeds 1100 N requirement."
-T048,R022,headlight,5.1,kN,ambient,passed,"Headlight retest achieved 5.1 kN at ambient; exceeds 4.7 kN requirement."
-T049,R027,license_plate,520,N,ambient,passed,"License plate retest achieved exactly 520 N at ambient."
-T050,R036,pedal,1650,N,ambient,passed,"Pedal retest achieved exactly 1650 N at ambient."
+test_id,req_id,component,measured_value,unit,condition,free_text
+T001,R001,door_frame,5.2,kN,-20°C,Door frame weld shear measured 5.2 kN at -20°C; borderline to requirement.
+T002,R002,panel,1.9,mm,ambient,Panel gap measurement averages 1.9 mm at ambient.
+T003,R003,b_pillar,820.0,N,ambient,B-pillar rigidity test achieved 820 N at room temperature.
+T004,R004,roof,11.2,kN,85°C,Roof panel weld shear measured only 11.2 kN at 85°C; below 12.0 kN requirement.
+T005,R005,hood,1.8,mm,ambient,Hood panel gap measurement shows 1.8 mm at ambient; within 1.5 mm tolerance.
+T006,R006,door,1350.0,N,-40°C,Door frame rigidity test achieved 1350 N at -40°C; exceeds minimum requirement.
+T007,R007,panel,8.2,kN,ambient,Side panel shear strength measured 8.2 kN at ambient; below required 8.5 kN threshold.
+T008,R008,b_pillar,0.9,mm,ambient,B-pillar gap measured 0.9 mm at ambient; exceeds maximum allowed 0.8 mm.
+T009,R009,door_frame,2480.0,N,ambient,Door frame rigidity measured 2480 N at ambient; does not match required 2500 N exactly.
+T010,R010,roof,2.8,mm,-10°C,Roof gap measurement shows 2.8 mm at -10°C; within 3.0 mm specification.
+T011,R011,hood,7.1,kN,ambient,Hood latch shear strength test achieved 7.1 kN at ambient; exceeds 6.8 kN minimum.
+T012,R012,panel,920.0,N,60°C,Panel rigidity measured 920 N at 60°C; below required threshold of 950 N.
+T013,R001,door_frame,5.8,kN,-20°C,Second door frame test measured 5.8 kN at -20°C; exceeds requirement.
+T014,R003,b_pillar,780.0,N,ambient,B-pillar rigidity retest measured 780 N at ambient; below 800 N requirement.
+T015,R007,panel,9.1,kN,ambient,Side panel shear strength retest achieved 9.1 kN; exceeds 8.5 kN requirement.
+T016,R013,bumper,16.1,kN,ambient,Front bumper shear test achieved 16.1 kN at ambient; exceeds 15.2 kN requirement.
+T017,R014,trunk,2.1,mm,ambient,Trunk lid gap measured 2.1 mm at ambient; exceeds 1.8 mm tolerance.
+T018,R015,fender,1050.0,N,-30°C,Fender rigidity measured 1050 N at -30°C; below 1100 N requirement.
+T019,R016,windshield,10.2,kN,ambient,Windshield bonding achieved 10.2 kN at ambient; exceeds 9.5 kN requirement.
+T020,R017,quarter_panel,2.7,mm,ambient,Quarter panel gap measured 2.7 mm; exceeds 2.5 mm maximum.
+T021,R018,spoiler,445.0,N,ambient,Spoiler rigidity measured 445 N at ambient; below required 450 N exactly.
+T022,R019,mirror,3.5,kN,-15°C,Mirror mounting achieved 3.5 kN at -15°C; exceeds 3.2 kN minimum.
+T023,R020,grille,0.8,mm,ambient,Grille gap measured 0.8 mm at ambient; within 0.9 mm tolerance.
+T024,R021,tailgate,1950.0,N,70°C,Tailgate rigidity achieved 1950 N at 70°C; exceeds 1800 N requirement.
+T025,R022,headlight,4.3,kN,ambient,Headlight housing achieved 4.3 kN at ambient; below 4.7 kN minimum.
+T026,R023,bumper,1.3,mm,ambient,Rear bumper gap measured 1.3 mm; exceeds 1.2 mm maximum.
+T027,R024,antenna,295.0,N,-25°C,Antenna mount achieved 295 N at -25°C; exceeds 280 N requirement.
+T028,R025,wheel_well,12.5,kN,ambient,Wheel well liner achieved 12.5 kN at ambient; exceeds 11.8 kN requirement.
+T029,R026,fuel_door,1.0,mm,ambient,Fuel door gap measured 1.0 mm at ambient; within 1.1 mm tolerance.
+T030,R027,license_plate,510.0,N,ambient,License plate mount measured 510 N at ambient; below required 520 N exactly.
+T031,R028,exhaust,9.4,kN,120°C,Exhaust mounting achieved 9.4 kN at 120°C; exceeds 8.9 kN requirement.
+T032,R029,side_skirt,2.9,mm,ambient,Side skirt gap measured 2.9 mm; exceeds 2.8 mm maximum.
+T033,R030,sunroof,2350.0,N,-20°C,Sunroof frame achieved 2350 N at -20°C; exceeds 2200 N requirement.
+T034,R031,dashboard,6.8,kN,ambient,Dashboard mounting achieved 6.8 kN at ambient; below 7.3 kN minimum.
+T035,R032,console,0.6,mm,ambient,Console gap measured 0.6 mm at ambient; within 0.7 mm tolerance.
+T036,R033,seat,3650.0,N,ambient,Seat frame achieved 3650 N at ambient; exceeds 3500 N requirement.
+T037,R034,airbag,5.2,kN,-10°C,Airbag housing achieved 5.2 kN at -10°C; below 5.8 kN requirement.
+T038,R035,steering,0.6,mm,ambient,Steering gap measured 0.6 mm; exceeds 0.5 mm maximum.
+T039,R036,pedal,1645.0,N,ambient,Pedal rigidity measured 1645 N at ambient; below required 1650 N exactly.
+T040,R037,armrest,3.1,kN,ambient,Armrest mounting achieved 3.1 kN at ambient; exceeds 2.9 kN requirement.
+T041,R038,cupholder,0.7,mm,ambient,Cup holder gap measured 0.7 mm at ambient; within 0.8 mm tolerance.
+T042,R039,visor,425.0,N,ambient,Visor rigidity achieved 425 N at ambient; exceeds 380 N requirement.
+T043,R040,handle,3.8,kN,-5°C,Handle shear achieved 3.8 kN at -5°C; below 4.1 kN minimum.
+T044,R041,vent,1.6,mm,ambient,Vent gap measured 1.6 mm; exceeds 1.5 mm maximum.
+T045,R042,trim,720.0,N,ambient,Trim rigidity achieved 720 N at ambient; exceeds 680 N requirement.
+T046,R013,bumper,14.8,kN,ambient,Second bumper test achieved 14.8 kN; below 15.2 kN requirement.
+T047,R015,fender,1180.0,N,-30°C,Fender retest achieved 1180 N at -30°C; exceeds 1100 N requirement.
+T048,R022,headlight,5.1,kN,ambient,Headlight retest achieved 5.1 kN at ambient; exceeds 4.7 kN requirement.
+T049,R027,license_plate,520.0,N,ambient,License plate retest achieved exactly 520 N at ambient.
+T050,R036,pedal,1650.0,N,ambient,Pedal retest achieved exactly 1650 N at ambient.
