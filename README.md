@@ -1,27 +1,28 @@
 # LLM-based Requirement & Test Validation System
 
-A Streamlit web application that uses Large Language Models (LLMs) to extract structured requirements from free text, validate test results against requirements, and provide intelligent explanations and filtering capabilities.
+A Streamlit web application that uses Groq's free LLM service to extract structured requirements from free text, validate test results against requirements, and provide intelligent explanations and natural language filtering capabilities.
 
 ## 🎯 Features
 
-- **Smart Extraction**: Converts natural language requirements into structured data using LLMs
+- **Smart Extraction**: Converts natural language requirements into structured data using Groq LLM
 - **Automated Validation**: Compares test measurements against requirements with unit conversion
-- **Intelligent Explanations**: Generates human-readable explanations for test results
-- **Natural Language Queries**: Filter results using conversational queries
-- **Fallback Support**: Works with or without OpenAI API key using regex patterns
+- **Intelligent Explanations**: Generates human-readable explanations for validation results
+- **Natural Language Queries**: Filter results using conversational queries like "show failed components with kN unit"
+- **Free LLM Integration**: Uses Groq's free tier 
+- **Robust Fallback**: Regex-based parsing when LLM is unavailable
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Python 3.8+
-- OpenAI API key (optional, for enhanced LLM features)
+- Groq API key (free - get from https://console.groq.com/)
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/LLM_Validation_Project.git
-   cd LLM_Validation_Project
+   git clone https://github.com/SaiKiran0714/projectLLM.git
+   cd projectLLM
    ```
 
 2. **Create virtual environment**
@@ -40,11 +41,17 @@ A Streamlit web application that uses Large Language Models (LLMs) to extract st
    pip install -r requirements.txt
    ```
 
-4. **Set up environment variables (optional)**
-   Create a `.env` file in the project root:
+4. **Set up environment variables**
+   Create a `.env` file in the project root folder:
    ```
-   OPENAI_API_KEY=your_openai_api_key_here
+   GROQ_API_KEY=your_groq_api_key_here
    ```
+   
+   Get your free Groq API key:
+   - Go to https://console.groq.com/
+   - Create free account
+   - Generate API key
+   - Copy key starting with `gsk-...`
 
 5. **Run the application**
    ```bash
@@ -56,59 +63,70 @@ A Streamlit web application that uses Large Language Models (LLMs) to extract st
 
 ## 📊 Usage
 
-### 1. Upload Data
-- Upload your `requirements.csv` and `test_reports.csv` files
-- Or use the sample data provided in the `/data` folder
+### 1. Load Sample Data
+- The project includes comprehensive sample data:
+  - **42 automotive requirements** covering various components (door frames, panels, bumpers, etc.)
+  - **50 test reports** with realistic pass/fail scenarios
+- Or upload your own `requirements.csv` and `test_reports.csv` files
 
-### 2. Extract Requirements
+### 2. Extract Requirements (Optional)
 - Click "Extract requirements from free_text" to convert natural language requirements into structured data
-- Uses LLM (if API key provided) or regex fallback
+- Uses Groq LLM for intelligent parsing or regex fallback
+- Sample: "Door frame shear ≥ 5.5 kN" → `{"metric": "shear_strength", "comparator": "≥", "value": 5.5, "unit": "kN"}`
 
 ### 3. Run Validation
 - Click "Run validation" to compare test results against requirements
-- View pass/fail metrics and detailed results
+- Automatic unit conversion (kN ↔ N, mm conversions)
+- View pass/fail/unknown status with detailed explanations
 
-### 4. Filter Results
-- Use natural language queries like "Show failed door_frame shear tests ≥5.5 kN"
-- Apply intelligent filters to focus on specific results
+### 4. Natural Language Filtering
+- Use conversational queries to filter results:
+  - "show failed components with unit having kN"
+  - "show passed door tests"
+  - "show tests > 100 N"
+- Powered by Groq LLM with regex fallback
 
 ## 📁 Project Structure
 
 ```
-LLM_Validation_Project/
+projectLLM/
 ├── app/
-│   ├── main.py              # Streamlit web interface
-│   └── __init__.py
+│   └── main.py              # Streamlit web interface
 ├── core/
-│   ├── validate.py          # Validation engine
-│   ├── extract.py           # LLM extraction & explanations
-│   ├── schemas.py           # Data models
-│   └── dq.py               # Data quality utilities
+│   ├── extract.py           # LLM integration & query parsing
+│   ├── llm_providers.py     # Groq provider integration
+│   └── validate.py          # Validation engine with unit conversion
 ├── data/
-│   ├── requirements.csv     # Sample requirements data
-│   └── test_reports.csv     # Sample test results
-├── tests/
-│   └── sample_eval.json     # Test evaluation data
-├── requirements.txt         # Python dependencies
+│   ├── requirements.csv     # 42 automotive requirements
+│   └── test_reports.csv     # 50 test reports
+├── .env                     # Environment variables (GROQ_API_KEY)
 ├── .gitignore              # Git ignore rules
+├── requirements.txt         # Python dependencies
 └── README.md               # This file
 ```
 
-## 🔧 Configuration
+## 🔧 Data Format
 
-### CSV Data Format
+### CSV Data Structure
 
-**requirements.csv**:
+**requirements.csv** (42 entries):
 ```csv
 req_id,component,metric,comparator,value,unit,condition,free_text
 R001,door_frame,shear_strength,≥,5.5,kN,-20°C,"Door frame spot weld shear strength must be at least 5.5 kN at -20°C."
+R002,panel,gap,≤,2,mm,ambient,"Visible panel gap should not exceed 2 mm at ambient."
 ```
 
-**test_reports.csv**:
+**test_reports.csv** (50 entries):
 ```csv
-test_id,req_id,component,measured_value,unit,condition,comment,free_text
-T001,R001,door_frame,5.2,kN,-20°C,within tolerance,"Door frame weld shear measured 5.2 kN at -20°C."
+test_id,req_id,component,measured_value,unit,condition,free_text
+T001,R001,door_frame,5.2,kN,-20°C,"Door frame weld shear measured 5.2 kN at -20°C; borderline to requirement."
+T002,R002,panel,1.9,mm,ambient,"Panel gap measurement averages 1.9 mm at ambient."
 ```
+
+**Key Improvements:**
+- ✅ Removed redundant "comment" column (LLM determines pass/fail automatically)
+- ✅ Rich "free_text" descriptions provide context
+- ✅ No manual pass/fail labels that could conflict with calculated results
 
 ### Supported Comparators
 - `≥` (greater than or equal)
@@ -118,32 +136,86 @@ T001,R001,door_frame,5.2,kN,-20°C,within tolerance,"Door frame weld shear measu
 - `<` (less than)
 
 ### Supported Units
-- Force: `kN`, `N`
-- Length: `mm`, `m`
-- Temperature: `°C`, `°F`
+- **Force**: `kN`, `N` (with automatic conversion)
+- **Length**: `mm` (millimeters)
+- **Temperature**: `°C` (Celsius)
 
 ## 🤖 LLM Integration
 
-The system uses OpenAI's GPT-4o-mini for:
-1. **Requirement Extraction**: Converting free text to structured JSON
-2. **Result Explanations**: Generating human-readable test explanations
+The system uses **Groq's free LLM service** for:
+
+1. **Requirement Extraction**: Converting free text requirements to structured JSON
+2. **Result Explanations**: Generating human-readable test result explanations  
 3. **Query Processing**: Understanding natural language filter requests
 
-**Without API Key**: The system falls back to regex patterns and template-based explanations.
+**Groq Benefits:**
+- ✅ **Free**: 14,400 requests/day per model
+- ✅ **Fast**: Extremely fast response times
+- ✅ **Reliable**: llama-3.1-8b-instant model
+- ✅ **No Payment Required**: Just sign up at console.groq.com
 
-## 🛡️ Security
+**Fallback Support**: When LLM is unavailable, the system uses regex patterns and template-based processing.
 
-- API keys are stored in `.env` files (not committed to version control)
-- Sensitive data is excluded via `.gitignore`
-- Environment variables are loaded securely using `python-dotenv`
+## 🛡️ Security & Privacy
+
+- ✅ API keys stored in `.env` files (excluded from version control)
+- ✅ Sensitive data protected via `.gitignore`
+- ✅ Environment variables loaded securely using `python-dotenv`
+- ✅ Free Groq service - no payment info required
 
 ## 📈 Example Workflow
 
-1. **Input**: "Door frame spot weld shear strength must be at least 5.5 kN at -20°C"
-2. **Extraction**: `{"metric": "shear_strength", "comparator": "≥", "value": 5.5, "unit": "kN", "component": "door_frame"}`
-3. **Test**: Measured value 5.2 kN
-4. **Validation**: FAIL (5.2 < 5.5)
-5. **Explanation**: "Test failed: 5.2 kN is below the required 5.5 kN threshold"
+1. **Input Requirement**: "Door frame spot weld shear strength must be at least 5.5 kN at -20°C"
+2. **LLM Extraction**: 
+   ```json
+   {
+     "metric": "shear_strength", 
+     "comparator": "≥", 
+     "value": 5.5, 
+     "unit": "kN", 
+     "component": "door_frame"
+   }
+   ```
+3. **Test Measurement**: 5.2 kN at -20°C
+4. **Validation Result**: **FAIL** (5.2 < 5.5)
+5. **LLM Explanation**: "Test failed: measured 5.2 kN is below the required minimum of 5.5 kN"
+6. **Natural Language Query**: "show failed door_frame tests with kN"
+7. **Filtered Results**: Display only failed door frame tests with kN units
+
+## 🚀 Technical Architecture
+
+### Core Components
+
+**app/main.py**: Streamlit web interface
+- File upload and data display
+- Validation execution and results
+- Natural language filtering
+- Interactive dashboard
+
+**core/extract.py**: LLM integration and parsing
+- Groq LLM communication
+- Requirement text extraction
+- Query parsing for filters
+- Regex fallback patterns
+
+**core/llm_providers.py**: LLM provider management
+- Groq API integration
+- Error handling and retries
+- Provider availability checking
+
+**core/validate.py**: Validation engine
+- Unit conversion using Pint library
+- Comparator operations (≥, ≤, =, etc.)
+- Pass/fail determination
+
+### Data Processing Pipeline
+
+1. **Load CSV files** → pandas DataFrames
+2. **Extract requirements** → structured JSON via Groq LLM
+3. **Merge datasets** → combine requirements + test results
+4. **Validate measurements** → compare values with unit conversion
+5. **Generate explanations** → LLM-powered result descriptions
+6. **Apply filters** → natural language query processing
 
 ## 🤝 Contributing
 
@@ -153,20 +225,63 @@ The system uses OpenAI's GPT-4o-mini for:
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
+## 📄 Dependencies
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Current project dependencies in `requirements.txt`:
+
+```
+streamlit>=1.28.0      # Web interface framework
+pandas>=2.0.0          # Data manipulation and CSV handling
+pint>=0.21.0           # Unit conversion (kN ↔ N, mm)
+pydantic>=2.0.0        # Data validation and schema modeling
+python-dotenv>=1.0.0   # Environment variable management
+groq>=0.32.0           # Groq LLM API integration
+```
 
 ## 🆘 Support
 
 If you encounter any issues:
-1. Check the [Issues](https://github.com/yourusername/LLM_Validation_Project/issues) page
-2. Create a new issue with detailed information
-3. Include error messages and steps to reproduce
+
+1. **Check Common Issues**:
+   - Ensure Groq API key is set in `.env` file
+   - Verify CSV files have correct column structure
+   - Check Python version compatibility (3.8+)
+
+2. **Get Help**:
+   - Check the [Issues](https://github.com/SaiKiran0714/projectLLM/issues) page
+   - Create a new issue with detailed information
+   - Include error messages and steps to reproduce
+
+3. **Groq Setup Issues**:
+   - Sign up at https://console.groq.com/ 
+   - Generate API key (starts with `gsk-`)
+   - Add to `.env` as `GROQ_API_KEY=gsk-...`
 
 ## 🙏 Acknowledgments
 
-- Built with [Streamlit](https://streamlit.io/)
-- LLM integration via [OpenAI API](https://openai.com/)
-- Unit conversion using [Pint](https://pint.readthedocs.io/)
-- Data validation with [Pydantic](https://pydantic-docs.helpmanual.io/)
+- **UI Framework**: Built with [Streamlit](https://streamlit.io/)
+- **LLM Integration**: Powered by [Groq](https://groq.com/) free tier
+- **Data Processing**: [pandas](https://pandas.pydata.org/) for CSV handling
+- **Unit Conversion**: [Pint](https://pint.readthedocs.io/) library
+- **Data Validation**: [Pydantic](https://pydantic-docs.helpmanual.io/) schemas
+- **Environment Management**: [python-dotenv](https://github.com/theskumar/python-dotenv)
+
+## 🎯 Use Cases
+
+This system is ideal for:
+
+- **Automotive Testing**: Validate component strength, gap measurements, rigidity tests
+- **Quality Assurance**: Automated pass/fail determination with explanations
+- **Compliance Checking**: Ensure test results meet specification requirements
+- **Data Analysis**: Natural language querying of test results
+- **Documentation**: Generate human-readable validation reports
+
+## 🔄 Future Enhancements
+
+Potential improvements:
+- [ ] Support for additional LLM providers
+- [ ] More unit types and conversions
+- [ ] Export validation reports to PDF
+- [ ] Batch processing for large datasets
+- [ ] Advanced statistical analysis
+- [ ] Integration with testing equipment APIs
